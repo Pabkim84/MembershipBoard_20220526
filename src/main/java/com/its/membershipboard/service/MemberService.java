@@ -5,6 +5,9 @@ import com.its.membershipboard.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Member;
+import java.util.List;
+
 @Service
 public class MemberService {
     @Autowired
@@ -25,5 +28,28 @@ public class MemberService {
     } else {
         return "no";
     }
+    }
+
+    public MemberDTO login(MemberDTO memberDTO) {
+        return memberRepository.login(memberDTO);
+    }
+
+    public List<MemberDTO> findAll() {
+       List<MemberDTO>memberDTOList = memberRepository.findAll();
+        return memberDTOList;
+    }
+
+    public MemberDTO findById(Long id) {
+        MemberDTO memberDTO = memberRepository.findById(id);
+        return memberDTO;
+    }
+
+    public boolean delete(Long id) {
+        int result = memberRepository.delete(id);
+        if(result>0){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -43,7 +43,7 @@
     <link href="carousel.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="./layout/header.jsp" flush="false"></jsp:include>
+                    <jsp:include page="./layout/header.jsp" flush="false"></jsp:include>
 
 <main>
 

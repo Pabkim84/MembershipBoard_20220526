@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -25,14 +26,29 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">게시판</a>
+                        <a class="nav-link" href="/board/list">게시판</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">로그인</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/member/save">회원가입</a>
-                    </li>
+                    <c:if test="${sessionScope.loginMemberId eq 'admin'}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/member/findAll">회원목록(관리자전용)</a>
+                        </li>
+                    </c:if>
+                    <c:choose>
+                        <c:when test="${sessionScope.loginMemberId != null}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/member/logout">${sessionScope.loginMemberId}님 로그아웃</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/member/login">로그인</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/member/save">회원가입</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

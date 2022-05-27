@@ -11,4 +11,16 @@
     <select id="memberId" parameterType="String" resultType="String">
         select memberId from member_table where memberId=#{memberId}
     </select>
+    <select id="login" parameterType="member" resultType="member">
+        select * from member_table where memberId=#{memberId} and memberPassword=#{memberPassword}
+    </select>
+    <select id="memberList" parameterType="member" resultType="member">
+        select * from member_table;
+    </select>
+    <select id="findById" parameterType="Long" resultType="member">
+        select * from member_table where id=#{id}
+    </select>
+    <delete id="delete">
+        delete from member_table where id=#{id}
+    </delete>
 </mapper>
