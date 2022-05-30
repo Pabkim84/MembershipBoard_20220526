@@ -1,5 +1,6 @@
 package com.its.membershipboard.controller;
 
+import com.its.membershipboard.dto.BoardDTO;
 import com.its.membershipboard.dto.MemberDTO;
 import com.its.membershipboard.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.Member;
 import java.util.List;
 
 @RequestMapping("/member")
@@ -43,6 +43,7 @@ public class MemberController {
         MemberDTO loginMember = memberService.login(memberDTO);
         if(loginMember != null){
             model.addAttribute("loginMember", loginMember);
+            session.setAttribute("id",loginMember.getId());
             session.setAttribute("loginMemberId", loginMember.getMemberId());
             return "redirect:/board/paging";
         } else {
@@ -66,6 +67,13 @@ public class MemberController {
         MemberDTO memberDTO = memberService.findById(id);
         return memberDTO;
     }
+    @GetMapping("/detail")
+    public String detail(@RequestParam("id")Long id, Model model){
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute("memberDTO" ,memberDTO);
+        return "member/myPage";
+    }
+
     @GetMapping("/delete")
     public String delete(@RequestParam ("id") Long id) {
         boolean result = memberService.delete(id);
@@ -75,5 +83,16 @@ public class MemberController {
             return "member/delete-failed";
         }
     }
-
+    @GetMapping("/update")
+    public String updateForm(@RequestParam ("id") Long id, Model model) {
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute("boardUpdate", memberDTO);
+        return "board/update";
+    }
+    //수정처리
+    @PostMapping("/update")
+    public String update(@ModelAttribute MemberDTO memberDTO) {
+        boolean updateResult = memberService.update(memberDTO);
+        return "redirect:/member/detail?id=" + memberDTO.getId();
+    }
 }

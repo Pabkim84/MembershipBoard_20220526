@@ -36,6 +36,9 @@
                     <c:choose>
                         <c:when test="${sessionScope.loginMemberId != null}">
                             <li class="nav-item">
+                                <a class="nav-link" href="/member/detail?id=${sessionScope.id}">마이페이지</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="/member/logout">${sessionScope.loginMemberId}님 로그아웃</a>
                             </li>
                         </c:when>

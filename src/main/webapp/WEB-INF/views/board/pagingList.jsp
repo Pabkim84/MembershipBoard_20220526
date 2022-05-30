@@ -18,7 +18,12 @@
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px"><h2>게시판</h2></div>
-<div class="container mt-3">
+<c:choose>
+    <c:when test="${sessionScope.loginMemberId != null}">
+        <button type="button" class="btn btn-secondary btn-sm" style="margin: 0 0 0 50px" onclick="newContents()">새 게시글작성</button>
+    </c:when>
+</c:choose>
+<div class="container mt-3"">
     <form action="/board/search" method="get">
         <select name="searchType">
             <option value="boardTitle">제목</option>
@@ -28,11 +33,7 @@
         <input type="submit" value="검색">
     </form>
 </div>
-<c:choose>
-    <c:when test="${sessionScope.loginMemberId != null}">
-        <button type="button" class="btn btn-secondary btn-sm" style="margin: 0 0 0 50px" onclick="newContents()">새 게시글작성</button>
-    </c:when>
-</c:choose>
+
 <div class="container">
     <table class="table table-hover mt-5">
         <tr>

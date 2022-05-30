@@ -20,7 +20,10 @@
     <select id="findById" parameterType="Long" resultType="member">
         select * from member_table where id=#{id}
     </select>
-    <delete id="delete">
+    <delete id="delete" parameterType="id">
         delete from member_table where id=#{id}
     </delete>
+    <update id="update" parameterType="id">
+        update member_table set memberPassword=#{memberPassword}, memberMobile=#{memberMobile}
+    </update>
 </mapper>

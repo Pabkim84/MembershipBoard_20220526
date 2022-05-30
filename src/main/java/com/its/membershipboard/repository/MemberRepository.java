@@ -1,5 +1,6 @@
 package com.its.membershipboard.repository;
 
+import com.its.membershipboard.dto.BoardDTO;
 import com.its.membershipboard.dto.MemberDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,9 @@ public class MemberRepository {
 
     public int delete(Long id) {
         return sql.delete("Member.delete", id);
+    }
+
+    public int update(MemberDTO memberDTO) {
+        return sql.update("Member.update", memberDTO);
     }
 }
