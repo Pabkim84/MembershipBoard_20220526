@@ -44,7 +44,7 @@ public class MemberController {
         if(loginMember != null){
             model.addAttribute("loginMember", loginMember);
             session.setAttribute("loginMemberId", loginMember.getMemberId());
-            return "board/list";
+            return "redirect:/board/paging";
         } else {
 
             return "member/login-failed";

@@ -16,7 +16,7 @@
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px"><h2>게시글 작성</h2></div>
 
-<form action="/board/save" method="post">
+<form action="/board/save" method="post" enctype="multipart/form-data">
         <input class="form-control" type="text" value="${sessionScope.loginMemberId}" name="boardWriter" readonly>
     <div class="mb-3">
         <label for="boardTitle" class="form-label">작성할 글제목</label>
@@ -26,7 +26,10 @@
         <label for="boardContents" class="form-label">작성할 내용</label>
         <textarea class="form-control" id="boardContents" rows="3" name="boardContents"></textarea>
     </div>
-        <div class="mb-3">
+    <div class="mb-3">
+    첨부파일: <input type="file" id="boardFile" name="boardFile">
+    </div>
+    <div class="mb-3">
             <input type="submit" class="form-control" value="글게시">
         </div>
 </form>

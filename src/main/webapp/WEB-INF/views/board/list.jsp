@@ -13,6 +13,8 @@
     <title>boardList</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script src="/resources/js/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
@@ -47,9 +49,11 @@
                 <td>${boardList.boardTitle}</td>
                 <td>${boardList.boardContents}</td>
                 <td>${boardList.boardHits}</td>
-                <td>${boardList.boardCreatedDate}</td>
+                <td><fmt:formatDate pattern="yyyy-MM0dd hh:mm:ss" value="${boardList.boardCreatedDate}"></fmt:formatDate></td>
+                <img src="${pageContext.request.contextPath}/upload/${boardList.boardFileName}"
+                     alt="" height="100" width="100">
                 <td><a href="#" onclick="findById('${boardList.id}')">조회</a></td>
-                <td><a href="/member/delete?id=${boardList.id}">회원삭제</a></td>
+                <td><a href="/member/delete?id=${boardList.id}">글삭제</a></td>
             </tr>
         </c:forEach>
         </tbody>
