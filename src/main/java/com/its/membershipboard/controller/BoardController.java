@@ -20,7 +20,17 @@ public class BoardController {
     private BoardService boardService;
     @Autowired
     private CommentService commentService;
-
+    @GetMapping("/save")
+    public String saveFileForm() {
+        return "board/save";
+    }
+    //파일첨부 글작성 처리
+    @PostMapping("/save")
+    public String saveFile(@ModelAttribute BoardDTO boardDTO) throws IOException {
+        System.out.println("boardDTO = " + boardDTO);
+        boardService.saveFile(boardDTO);
+        return "redirect:/board/paging";
+    }
     @GetMapping("/paging")
     public String paging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
         List<BoardDTO> boardList = boardService.pagingList(page);
@@ -35,29 +45,9 @@ public class BoardController {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("boardDTO", boardDTO);
         model.addAttribute("page", page);
-        // 댓글 목록도 가져가야 함.
         List<CommentDTO> commentDTOList =   commentService.findAll(id);
         model.addAttribute("commentList", commentDTOList);
         return "board/detail";
-    }
-    @GetMapping("/save")
-    public String saveFileForm() {
-        return "board/save";
-    }
-    //파일첨부 글작성 처리
-    @PostMapping("/save")
-    public String saveFile(@ModelAttribute BoardDTO boardDTO) throws IOException {
-        System.out.println("boardDTO = " + boardDTO);
-        boardService.saveFile(boardDTO);
-        return "redirect:/board/paging";
-    }
-
-    @GetMapping("/search")
-    public String search(@RequestParam("searchType") String searchType,
-                         @RequestParam("q") String q, Model model) {
-        List<BoardDTO> searchList = boardService.search(searchType, q);
-        model.addAttribute("boardList", searchList);
-        return "board/pagingList";
     }
     @GetMapping("/update")
     public String updateForm(@RequestParam ("id") Long id, Model model) {
@@ -75,5 +65,12 @@ public class BoardController {
     private String delete(@RequestParam("id") Long id) {
         boardService.delete(id);
         return "redirect:/board/paging";
+    }
+    @GetMapping("/search")
+    public String search(@RequestParam("searchType") String searchType,
+                         @RequestParam("q") String q, Model model) {
+        List<BoardDTO> searchList = boardService.search(searchType, q);
+        model.addAttribute("boardList", searchList);
+        return "board/pagingList";
     }
 }

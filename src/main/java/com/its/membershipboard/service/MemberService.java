@@ -5,7 +5,10 @@ import com.its.membershipboard.dto.MemberDTO;
 import com.its.membershipboard.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Member;
 import java.util.List;
 
@@ -14,7 +17,16 @@ public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
-    public boolean save(MemberDTO memberDTO) {
+    public boolean save(MemberDTO memberDTO) throws IOException {
+        MultipartFile memberProfile = memberDTO.getMemberProfile();
+        String memberProfileName = memberProfile.getOriginalFilename();
+        memberProfileName = System.currentTimeMillis() + "-" + memberProfileName;
+        memberDTO.setMemberProfileName(memberProfileName);
+        String savePath="D:\\spring_img\\" + memberProfileName;
+        // 5.
+        if (!memberProfile.isEmpty()) {
+            memberProfile.transferTo(new File(savePath));
+        }
         int result = memberRepository.save(memberDTO);
         if (result > 0) {
             return true;

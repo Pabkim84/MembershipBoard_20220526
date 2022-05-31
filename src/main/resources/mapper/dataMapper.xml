@@ -5,8 +5,8 @@
 
 <mapper namespace="Member">
     <insert id="save" parameterType="member">
-        insert into member_table (id, memberId, memberPassword, memberName, memberEmail, memberMobile)
-        values (#{id}, #{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile})
+        insert into member_table (id, memberId, memberPassword, memberName, memberEmail, memberMobile, memberProfileName)
+        values (#{id}, #{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile}, #{memberProfileName})
     </insert>
     <select id="memberId" parameterType="String" resultType="String">
         select memberId from member_table where memberId=#{memberId}
@@ -20,10 +20,10 @@
     <select id="findById" parameterType="Long" resultType="member">
         select * from member_table where id=#{id}
     </select>
-    <delete id="delete" parameterType="id">
+    <delete id="delete" parameterType="Long">
         delete from member_table where id=#{id}
     </delete>
-    <update id="update" parameterType="id">
-        update member_table set memberPassword=#{memberPassword}, memberMobile=#{memberMobile}
+    <update id="update" parameterType="member">
+        update member_table set memberEmail=#{memberEmail}, memberMobile=#{memberMobile} where id=#{id}
     </update>
 </mapper>

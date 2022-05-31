@@ -35,7 +35,8 @@
         <td>${memberList.memberName}</td>
         <td>${memberList.memberEmail}</td>
         <td>${memberList.memberMobile}</td>
-        <td>${memberList.memberProfileName}</td>
+        <td><img src="${pageContext.request.contextPath}/upload/${memberList.memberProfileName}"
+                 alt="" height="50" width="50"></td>
         <td><a href="#" onclick="findById('${memberList.id}')">조회</a></td>
         <td><a href="/member/delete?id=${memberList.id}">회원삭제</a></td>
     </tr>
@@ -70,7 +71,7 @@
                 output += "<td>" + result.memberName             + "</td>";
                 output += "<td>" + result.memberEmail            + "</td>";
                 output += "<td>" + result.memberMobile           + "</td>";
-                output += "<td>" + result.memberProfileName      + "</td>";
+                output += "<td>" + "<img src='${pageContext.request.contextPath}/upload/" + result.memberProfileName + "'" + "height='50' width='50'>" + "</td>";
                 output += "</tr>";
                 output += "</thead>";
                 output += "</table>";

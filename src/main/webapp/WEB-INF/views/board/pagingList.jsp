@@ -23,7 +23,7 @@
         <button type="button" class="btn btn-secondary btn-sm" style="margin: 0 0 0 50px" onclick="newContents()">새 게시글작성</button>
     </c:when>
 </c:choose>
-<div class="container mt-3"">
+<div class="container mt-3">
     <form action="/board/search" method="get">
         <select name="searchType">
             <option value="boardTitle">제목</option>
@@ -47,7 +47,7 @@
             <tr>
                 <td>${board.id}</td>
                 <td>${board.boardWriter}</td>
-                <td><a href="/board/detail?page=${page}&id=${board.id}">${board.boardTitle}</a></td>
+                <td><a href="/board/detail?page=${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
                 <td>${board.boardHits}</td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd"
                                     value="${board.boardCreatedDate}"></fmt:formatDate></td>

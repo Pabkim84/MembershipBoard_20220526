@@ -39,8 +39,13 @@
                      alt="" height="50" width="50"></td>
                 </c:when>
             </c:choose>
-            <td><button onclick="boardUpdate()">수정</button></td>
-            <td><button onclick="boardDelete()">삭제</button></td>
+            <c:if test="${sessionScope.loginMemberId != null and sessionScope.loginMemberId eq boardDTO.boardWriter}">
+                <li class="nav-item">
+                    <td><button onclick="boardUpdate()">수정</button></td>
+                    <td><button onclick="boardDelete()">삭제</button></td>
+                </li>
+            </c:if>
+
             <td><button onclick="findAll()">목록</button></td>
         </tr>
         <tr>
@@ -83,9 +88,6 @@
 </body>
 <script>
 $("#comment-write-btn").click(function (){
-    // 댓글 작성자, 내용을 가져오고
-    // ajax 문법을 활용하여 /comment/save 주소로 post 방식으로 작성자, 내용, 글번호 이렇게
-    // 세개의 값을 보내는 코드를 작성하십시오.
     const commentWriter = document.getElementById("commentWriter").value; //script 방식 id값 가져오기
     const commentContents = $("#commentContents").val(); //jquery 방식 id값 가져오기
     const boardId = '${boardDTO.id}';
@@ -131,10 +133,7 @@ const boardDelete = () => {
     location.href = "/board/delete?id=${boardDTO.id}";
 }
 const findAll = () => {
-    location.href = "/board/findAll";
-}
-const paging = () => {
-    location.href = "/board/paging?page=${page}"; // 직전에 있었던 페이지 값을 컨트롤러로 요청
+    location.href = "/board/paging?page=" + '${page}';
 }
 </script>
 </html>

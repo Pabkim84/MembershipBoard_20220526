@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/db_spring_mvc</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="db_spring_mvc@localhost [2]" uuid="f83a7ba4-eec3-43a6-93fd-f7227838106d">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/db_spring_mvc</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

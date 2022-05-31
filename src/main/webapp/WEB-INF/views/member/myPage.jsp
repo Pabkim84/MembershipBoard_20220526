@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>myPage</title>
@@ -30,29 +32,28 @@
             <td>${memberDTO.memberName}</td>
             <td>${memberDTO.memberEmail}</td>
             <td>${memberDTO.memberMobile}</td>
-            <td>${memberDTO.memberProfile}</td>
+            <td>
+                <img src="${pageContext.request.contextPath}/upload/${memberDTO.memberProfileName}"
+                     alt="" height="50" width="50">
+            </td>
         </tr>
         <tr>
             <td></td>
             <td></td>
             <td></td>
-            <td><button class="btn btn-primary" onclick="boardUpdate()">수정</button></td>
-            <td><button class="btn btn-primary" onclick="boardDelete()">삭제</button></td>
+            <td></td>
+            <td><button class="btn btn-primary" onclick="memberUpdate()">수정</button>
+                <button class="btn btn-primary" onclick="memberDelete()">회원탈퇴</button></td>
+
         </tr>
 </table>
 </div>
 </body>
 <script>
-    const boardUpdate = () => {
-        const userInput = prompt("비밀번호를 입력하세요"+"");
-        if(userInput.eq(${memberDTO.memberPassword})){
+    const memberUpdate = () => {
         location.href = "/member/update?id=${memberDTO.id}";
-        }
-        else {
-            alert("비밀번호가 틀렸습니다.")
-        }
     }
-    const boardDelete = () => {
+    const memberDelete = () => {
         location.href = "/member/delete?id=${memberDTO.id}";
     }
 </script>
