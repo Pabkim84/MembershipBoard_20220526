@@ -100,7 +100,7 @@
 
         <hr class="featurette-divider">
 
-        <div class="row featurette">
+        <div class="row featurette" style="margin-left: 50px">
             <div class="col-md-7">
                 <h2 class="featurette-heading">회원제게시판에 오신것을 환영합니다. <br>
                     <h3 class="text-muted">먼저 회원가입을 해주세요.</h3></h2>

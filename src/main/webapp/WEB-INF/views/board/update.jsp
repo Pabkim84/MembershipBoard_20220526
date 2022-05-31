@@ -13,13 +13,15 @@
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
-<div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px"><h2>글수정</h2></div>
+<div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px">
+    <div class="container"><h2>글수정</h2>
 <form action="/board/update" method="post" name="updateForm">
-    글번호: <input type="text" name="id" value="${boardUpdate.id}" readonly><br>
-    글제목: <input type="text" name="boardTitle" value="${boardUpdate.boardTitle}" style="width: 300px"><br>
-    작성자: <input type="text" name="boardWriter" value="${boardUpdate.boardWriter}" readonly><br>
+    글번호: <input type="text" name="id" value="${boardUpdate.id}" style="width: 330px" readonly><br>
+    글제목: <input type="text" name="boardTitle" value="${boardUpdate.boardTitle}" style="width: 330px"><br>
+    작성자: <input type="text" name="boardWriter" value="${boardUpdate.boardWriter}" style="width: 330px" readonly><br>
     글내용:<br><textarea name="boardContents" rows="10" cols="50">${boardUpdate.boardContents}</textarea><br>
-    <input type="submit" value="정보수정" onclick="boardUpdate()">
+    <input type="submit" class="btn btn-primary" value="정보수정" onclick="boardUpdate()">
 </form>
+</div></div>
 </body>
 </html>

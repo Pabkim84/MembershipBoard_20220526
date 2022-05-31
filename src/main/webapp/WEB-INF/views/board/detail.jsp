@@ -17,7 +17,7 @@
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
-<div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px"></div>
+<div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px">
 <div class="container">
     <h2>상세조회</h2>
     <table class="table table-hover mt-5">
@@ -84,6 +84,7 @@
             </c:forEach>
         </table>
     </div>
+</div>
 </div>
 </body>
 <script>

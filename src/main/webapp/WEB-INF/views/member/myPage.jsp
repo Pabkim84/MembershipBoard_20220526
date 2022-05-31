@@ -17,8 +17,10 @@
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
-<div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px"><h2>마이페이지</h2></div>
-<div class="container">
+<div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px">
+    <div class="container">
+    <h2>마이페이지</h2></div>
+
 <table class="table table-hover">
     <tr>
         <th>아이디</th>

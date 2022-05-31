@@ -14,8 +14,9 @@
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
-<div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px"><h2>게시글 작성</h2></div>
-
+<div class="bd-callout bd-callout-info" style="margin: 100px auto auto 20px">
+    <div class="container">
+    <h2>게시글 작성</h2>
 <form action="/board/save" method="post" enctype="multipart/form-data">
         <input class="form-control" type="text" value="${sessionScope.loginMemberId}" name="boardWriter" readonly>
     <div class="mb-3">
@@ -33,6 +34,7 @@
             <input type="submit" class="form-control" value="글게시">
         </div>
 </form>
+</div></div>
 </body>
 
 </html>
